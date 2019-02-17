@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    android:background="@mipmap/login"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.RegActivity">
+    android:background="@mipmap/login"
+    android:orientation="vertical"
+    tools:context=".view.activity.MainActivity">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="注册页面"
+        android:text="登录页面"
         android:textSize="25sp" />
 
     <RelativeLayout
@@ -56,11 +56,11 @@
             android:layout_height="match_parent" />
 
         <ImageView
-            android:id="@+id/cut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignRight="@+id/pwd_Main"
             android:layout_centerVertical="true"
+            android:id="@+id/cut"
             android:src="@mipmap/login_eye" />
     </RelativeLayout>
 
@@ -70,18 +70,19 @@
 
 
 
+
         <TextView
-            android:id="@+id/login"
+            android:id="@+id/reg"
             android:layout_alignParentRight="true"
             android:layout_marginRight="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="已有账户? 立即登录" />
+            android:text="已有账号?  立即登录" />
     </RelativeLayout>
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="登录"
+        android:text="注册"
         android:layout_gravity="center"
         android:id="@+id/reg_Button"
         />

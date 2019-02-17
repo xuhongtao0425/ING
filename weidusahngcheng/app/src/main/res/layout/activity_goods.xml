@@ -1,9 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.activity.GoodsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_goods"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@mipmap/daohang"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/shouye"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/daohang_shouye_true" />
+
+        <RadioButton
+            android:id="@+id/quanzi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/daohang_quanzi" />
+
+        <RadioButton
+            android:id="@+id/gouwuche"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/daohang_gouwuche" />
+
+        <RadioButton
+            android:id="@+id/dingdan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/daohang_dingdan" />
+
+        <RadioButton
+            android:id="@+id/geren"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/daohang_geren" />
+
+    </RadioGroup>
+</LinearLayout>
