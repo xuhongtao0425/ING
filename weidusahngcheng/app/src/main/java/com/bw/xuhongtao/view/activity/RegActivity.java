@@ -34,7 +34,7 @@ public class RegActivity extends BaseActivity implements View.OnClickListener,Re
     protected void initView() {
         phone_Main = findViewById(R.id.phone_Main);
         pwd_Main = findViewById(R.id.pwd_Main);
-        login = findViewById(R.id.login);
+        login = findViewById(R.id.reg);
         reg_button = findViewById(R.id.reg_Button);
         cut = findViewById(R.id.cut);
         //实例化
@@ -56,7 +56,7 @@ public class RegActivity extends BaseActivity implements View.OnClickListener,Re
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.login:
+            case R.id.reg:
                 startActivity(new Intent(RegActivity.this,MainActivity.class));
                 finish();
                 break;

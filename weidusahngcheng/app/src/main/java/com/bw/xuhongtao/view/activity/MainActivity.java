@@ -19,6 +19,10 @@ import com.bw.xuhongtao.utils.VerificationUtils;
 import com.bw.xuhongtao.view.LoginView;
 import com.bw.xuhongtao.view.base.BaseActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends BaseActivity implements View.OnClickListener, LoginView {
 
 
@@ -49,11 +53,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         phone_Main = findViewById(R.id.phone_Main);
         pwd_Main = findViewById(R.id.pwd_Main);
         jizhumima = findViewById(R.id.jizhumima);
-        reg = findViewById(R.id.reg);
-        this.login = findViewById(R.id.login);
+        reg = findViewById(R.id.reg_main);
+        login = findViewById(R.id.login_main);
         cut_main = findViewById(R.id.cut_Main);
         boolean pass = preferences.getBoolean("记住密码", false);
-        if(pass){
+        if (pass) {
             phone_Main.setText(preferences.getString("phone", ""));
             pwd_Main.setText(preferences.getString("pwd", ""));
             jizhumima.setChecked(pass);
@@ -63,7 +67,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         persenter = new LoginPersenter(this);
         //点击事件
         reg.setOnClickListener(this);
-        this.login.setOnClickListener(this);
+        login.setOnClickListener(this);
         cut_main.setOnClickListener(this);
     }
 
@@ -77,10 +81,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.reg:
+            case R.id.reg_main:
                 startActivity(new Intent(MainActivity.this, RegActivity.class));
                 break;
-            case R.id.login:
+            case R.id.login_main:
                 String phone = phone_Main.getText().toString();
                 String pwd = pwd_Main.getText().toString();
                 edit.putString("phone", phone);
@@ -123,14 +127,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     @Override
-    public void loginView(String message, String status) {
+    public void loginView(String message, String status, JSONObject result) {
+        try {
+            //获取SharedPreferences存入userId,sessionId
+            SharedPreferences user = getSharedPreferences("user", Context.MODE_PRIVATE);
+            SharedPreferences.Editor useredit = user.edit();
+            String userId = result.getString("userId");
+            String sessionId = result.getString("sessionId");
+            useredit.putString("userId", userId);
+            useredit.putString("sessionId", sessionId);
+            useredit.commit();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         if (status.equals("0000")) {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
-            edit.putBoolean("记住密码", jizhumima.isChecked()).commit();
+                edit.putBoolean("记住密码", jizhumima.isChecked()).commit();
 
-            startActivity(new Intent(MainActivity.this, GoodsActivity.class));
-            finish();
+                Intent intent = new Intent(MainActivity.this, GoodsActivity.class);
+
+                startActivity(intent);
+                finish();
         } else {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }

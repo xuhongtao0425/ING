@@ -1,20 +1,20 @@
 package com.bw.xuhongtao.view.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.bw.xuhongtao.R;
+
+import com.bw.xuhongtao.utils.UrlPath;
 import com.bw.xuhongtao.view.base.BaseActivity;
 import com.bw.xuhongtao.view.fragment.FragmentDingdan;
 import com.bw.xuhongtao.view.fragment.FragmentGeren;
-import com.bw.xuhongtao.view.fragment.FragmentGoods;
+import com.bw.xuhongtao.view.fragment.FragmentShouYe;
 import com.bw.xuhongtao.view.fragment.FragmentGouwuche;
 import com.bw.xuhongtao.view.fragment.FragmentQuanzi;
 
@@ -22,7 +22,7 @@ public class GoodsActivity extends BaseActivity {
 
 
     private RadioGroup rg_goods;
-    private FragmentGoods fragmentGoods = null;
+    private FragmentShouYe fragmentGoods = null;
     private FragmentQuanzi fragmentQuanzi = null;
     private FragmentGouwuche fragmentGouwuche = null;
     private FragmentDingdan fragmentDingdan = null;
@@ -43,6 +43,8 @@ public class GoodsActivity extends BaseActivity {
         dingdan = findViewById(R.id.dingdan);
         geren = findViewById(R.id.geren);
 
+
+
     }
 
     @Override
@@ -51,7 +53,7 @@ public class GoodsActivity extends BaseActivity {
         rg_goods.check(rg_goods.getChildAt(0).getId());
         //事务添加
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.frame, fragmentGoods = new FragmentGoods()).commit();
+        transaction.add(R.id.frame, fragmentGoods = new FragmentShouYe()).commit();
         //点击事件
         rg_goods.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -61,22 +63,19 @@ public class GoodsActivity extends BaseActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 boolean sy = true;
                 boolean qz = false;
-
                 boolean dd = false;
                 boolean gr = false;
 
                 switch (checkedId) {
                     case R.id.shouye:
                         if (fragmentGoods == null) {
-                            fragmentGoods = new FragmentGoods();
+                            fragmentGoods = new FragmentShouYe();
                             transaction.add(R.id.frame, fragmentGoods);
                         } else {
                             transaction.show(fragmentGoods);
                         }
-
                         sy = true;
                         qz = false;
-
                         dd = false;
                         gr = false;
                         break;
@@ -89,7 +88,6 @@ public class GoodsActivity extends BaseActivity {
                         }
                         sy = false;
                         qz = true;
-
                         dd = false;
                         gr = false;
                         break;
@@ -102,7 +100,6 @@ public class GoodsActivity extends BaseActivity {
                         }
                         sy = false;
                         qz = false;
-
                         dd = false;
                         gr = false;
                         break;
@@ -115,7 +112,6 @@ public class GoodsActivity extends BaseActivity {
                         }
                         sy = false;
                         qz = false;
-
                         dd = true;
                         gr = false;
                         break;
@@ -128,7 +124,6 @@ public class GoodsActivity extends BaseActivity {
                         }
                         sy = false;
                         qz = false;
-
                         dd = false;
                         gr = true;
                         break;
@@ -163,7 +158,7 @@ public class GoodsActivity extends BaseActivity {
                     Drawable drawable = GoodsActivity.this.getResources().getDrawable(R.mipmap.daohang_geren);
                     geren.setCompoundDrawablesRelativeWithIntrinsicBounds(null, drawable, null, null);
                 }
-            }
+               }
         });
     }
 

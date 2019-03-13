@@ -38,46 +38,44 @@ public class OkhttpUtils {
         return okhttpUtils;
 
     }
-
+//封装OKHTTP
+    private static OkHttpClient okHttpClient=null;
+    private  static synchronized OkHttpClient getOkHttpClient(){
+        if(okHttpClient==null){
+            //创建拦截器
+            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+                @Override
+                public void log(String message) {
+                    Log.i("reg", message);
+                }
+            });
+            //设置拦截爱情
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            okHttpClient = new OkHttpClient.Builder()
+                    .addInterceptor(loggingInterceptor)
+                    .build();
+        }
+        return okHttpClient;
+    }
     //网络请求
-    public static void doGet(String url, Callback callback) {
-        //创建拦截器
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-            @Override
-            public void log(String message) {
-                Log.i("reg", message);
-            }
-        });
-        //设置拦截爱情
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .build();
+    public  void doGet(String url,String userId, String sessionId, Callback callback) {
+
+        OkHttpClient okHttpClient = getOkHttpClient();
+
         //请求方式
         Request request = new Request.Builder().url(url).build();
         okHttpClient.newCall(request).enqueue(callback);
     }
 
-    public static void doPost(String url, Map<String, String> map, Callback callback) {
-        //创建拦截器
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-            @Override
-            public void log(String message) {
-                Log.i("reg", message);
-            }
-        });
-        //设置拦截爱情
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .build();
+    public  void doPost(String url, Map<String, String> map, Callback callback) {
+        OkHttpClient okHttpClient = getOkHttpClient();
         FormBody.Builder formBody = new FormBody.Builder();
         for (String key : map.keySet() ) {
             formBody.add(key,map.get(key));
         }
         //请求方式
         Request request = new Request.Builder().url(url).post(formBody.build()).build();
-        okHttpClient.newCall(request).enqueue(callback);
+      okHttpClient.newCall(request).enqueue(callback);
     }
 
 }

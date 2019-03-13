@@ -4,7 +4,9 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.bw.xuhongtao.utils.OkhttpUtils;
+import com.bw.xuhongtao.utils.UrlPath;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,31 +25,34 @@ import okhttp3.Response;
  * @date 2019/2/16/016 18:46
  */
 public class LoginModel {
-//定义接口
-    public interface OnLoginListener{
-        void loginData(String message,String status);
-}
-private OnLoginListener onLoginListener;
+    //定义接口
+    public interface OnLoginListener {
+        void loginData(String message, String status,JSONObject result);
+    }
+
+    private OnLoginListener onLoginListener;
 
     public void setOnLoginListener(OnLoginListener onLoginListener) {
         this.onLoginListener = onLoginListener;
     }
 
-    private String url="http://172.17.8.100/small/user/v1/login";
-    private Map<String , String> map=new HashMap<>();
-    private Handler handler=new Handler(){
+
+    private Map<String, String> map = new HashMap<>();
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 0:
-                    String json=(String)msg.obj;
+                    String json = (String) msg.obj;
                     try {
-                        JSONObject jsonObject=new JSONObject(json);
+                        JSONObject jsonObject = new JSONObject(json);
+                        JSONObject result = jsonObject.getJSONObject("result");
+
                         String message = jsonObject.getString("message");
                         String status = jsonObject.getString("status");
-                        if(onLoginListener!=null){
-                            onLoginListener.loginData(message,status);
+                        if (onLoginListener != null) {
+                            onLoginListener.loginData(message, status,result );
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -57,10 +62,11 @@ private OnLoginListener onLoginListener;
             }
         }
     };
+
     public void loginModel(String phone, String pwd) {
-        map.put("phone",phone);
-        map.put("pwd",pwd);
-        OkhttpUtils.doPost(url, map, new Callback() {
+        map.put("phone", phone);
+        map.put("pwd", pwd);
+        OkhttpUtils.getInstance().doPost(UrlPath.login, map, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -69,9 +75,9 @@ private OnLoginListener onLoginListener;
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String loginJsonData = response.body().string();
-                Message message=new Message();
-                message.what=0;
-                message.obj=loginJsonData;
+                Message message = new Message();
+                message.what = 0;
+                message.obj = loginJsonData;
                 handler.sendMessage(message);
             }
         });

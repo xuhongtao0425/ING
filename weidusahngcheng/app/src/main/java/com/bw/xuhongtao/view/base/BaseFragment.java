@@ -20,7 +20,7 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(layoutResID(), container, false);
         //初始化页面
-        initView();
+        initView(view);
         //初始化数据
         initData();
         return view;
@@ -28,7 +28,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract int layoutResID();
 
-    protected abstract void initView();
+    protected abstract void initView(View view);
 
     protected abstract void initData();
 }

@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.bw.xuhongtao.utils.OkhttpUtils;
+import com.bw.xuhongtao.utils.UrlPath;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +34,7 @@ public class RegModel {
         this.onRegListener = onRegListener;
     }
 
-    private String url="http://172.17.8.100/small/user/v1/register";
+
     private Map<String ,String> mapReg=new HashMap<>();
     private Handler handler=new Handler(){
         @Override
@@ -60,7 +61,7 @@ public class RegModel {
         mapReg.put("phone",phone);
         mapReg.put("pwd",pwd);
         //调用方法
-        OkhttpUtils.doPost(url, mapReg, new Callback() {
+        OkhttpUtils.getInstance().doPost(UrlPath.reg, mapReg, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 

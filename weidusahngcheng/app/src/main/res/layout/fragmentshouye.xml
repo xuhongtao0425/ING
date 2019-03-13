@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:orientation="vertical">
+
+        <com.bw.xuhongtao.view.widget.CustomSouSuo
+            android:id="@+id/css"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.bw.xuhongtao.view.widget.CustomSouSuo>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_shouye"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:clipChildren="false"></android.support.v4.view.ViewPager>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rlv_shouye"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+</ScrollView>

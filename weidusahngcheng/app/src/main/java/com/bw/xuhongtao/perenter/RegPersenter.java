@@ -1,6 +1,10 @@
 package com.bw.xuhongtao.perenter;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import com.bw.xuhongtao.model.RegModel;
+import com.bw.xuhongtao.utils.NetWork;
 import com.bw.xuhongtao.view.RegView;
 import com.bw.xuhongtao.view.activity.RegActivity;
 
@@ -31,8 +35,16 @@ public class RegPersenter<T> {
 
     //v关联p
     public void regPersenter(String phone, String pwd) {
-        //p关联m
-        regModel.regModel(phone, pwd);
+        //网络状态
+        boolean networkConnected = NetWork.isNetworkConnected((Context) regView);
+
+        if(networkConnected){
+
+            //p关联m
+            regModel.regModel(phone, pwd);
+        }else{
+            Toast.makeText((Context)regView, "请检查网络", Toast.LENGTH_SHORT).show();
+        }
         //回调数据
         regModel.setOnRegListener(new RegModel.OnRegListener() {
             @Override
