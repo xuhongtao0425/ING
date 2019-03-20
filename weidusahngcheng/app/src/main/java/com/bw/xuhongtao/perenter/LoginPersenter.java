@@ -22,6 +22,7 @@ import java.lang.ref.WeakReference;
  */
 public class LoginPersenter<T> {
     private Reference<T> myReference;
+
     private final LoginModel loginModel;
     private final LoginView loginView;
 

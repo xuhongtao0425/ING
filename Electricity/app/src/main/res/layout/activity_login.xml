@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="登录页面"
+        android:textSize="25sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="40dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/phone_Main"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/login_phone" />
+
+        <EditText
+            android:id="@+id/phone_Main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="请输入手机号"
+            android:paddingLeft="30dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="40dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/pwd_Main"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/login_lock" />
+
+        <EditText
+            android:id="@+id/pwd_Main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="请输入密码"
+            android:paddingLeft="30dp"
+            android:password="true" />
+
+        <ImageView
+            android:id="@+id/cut_Main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/pwd_Main"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/login_eye" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+
+        <CheckBox
+            android:id="@+id/jizhumima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="记住密码" />
+
+        <TextView
+            android:id="@+id/reg_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:text="快速注册" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/login_main"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="登录" />
+</LinearLayout>
