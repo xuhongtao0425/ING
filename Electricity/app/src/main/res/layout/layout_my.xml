@@ -21,11 +21,13 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/head_my"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:src="@drawable/yuan" />
+            app:roundAsCircle="true"
+            app:placeholderImage="@drawable/yuan"
+             />
 
         <TextView
             android:id="@+id/username_my"

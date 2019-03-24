@@ -56,6 +56,7 @@ public class RetrofitUtil {
                                 .addHeader("userId", userId)
                                 .addHeader("sessionId", sessionId)
                                 .build();
+//                        Log.i("loginssss",userId+"加入"+sessionId);
                         return chain.proceed(request);
                     }
                 })
@@ -92,7 +93,7 @@ public class RetrofitUtil {
         return t;
     }
     //获取动态代理对象    带拦截器
-    public static <T> T getApiServer(String url, String userId, String sessionId, Class<T> serice) {
+    public  <T> T getApiServer(String url, String userId, String sessionId, Class<T> serice) {
         Retrofit retrofit = getretrofit(url, userId, sessionId);
         T t = retrofit.create(serice);
         return t;

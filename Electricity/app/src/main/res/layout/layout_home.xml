@@ -1,12 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<TextView
-    android:layout_centerInParent="true"
-    android:textSize="50dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="首页"
-    />
-</RelativeLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.bw.xuhongtao.widget.Search
+        android:id="@+id/search_home"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"></com.bw.xuhongtao.widget.Search>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/li"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:id="@+id/failed"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/failed"
+            android:layout_marginTop="200dp"
+            android:layout_gravity="center"
+            />
+        <TextView
+
+            android:id="@+id/text_main"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="你搜索的商品没有哟"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rl"
+        android:visibility="gone">
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/xrlv_home"
+            ></com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/sllv_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:orientation="vertical">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_home"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
+                android:clipChildren="false"></android.support.v4.view.ViewPager>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rlv_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

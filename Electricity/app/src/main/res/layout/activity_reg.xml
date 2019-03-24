@@ -27,7 +27,7 @@
             android:src="@mipmap/login_phone" />
 
         <EditText
-            android:id="@+id/phone_Main"
+            android:id="@+id/phone_reg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="请输入手机号"
@@ -47,7 +47,7 @@
             android:src="@mipmap/login_lock" />
 
         <EditText
-            android:id="@+id/pwd_Main"
+            android:id="@+id/pwd_reg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="请输入密码"
@@ -55,10 +55,10 @@
             android:password="true" />
 
         <ImageView
-            android:id="@+id/cut_Main"
+            android:id="@+id/cut_reg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/pwd_Main"
+            android:layout_alignRight="@+id/pwd_reg"
             android:layout_centerVertical="true"
             android:src="@mipmap/login_eye" />
     </RelativeLayout>
@@ -66,8 +66,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
+
         <TextView
-            android:id="@+id/reg_main"
+            android:id="@+id/login_reg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -76,7 +77,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/login_main"
+        android:id="@+id/reg_reg"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

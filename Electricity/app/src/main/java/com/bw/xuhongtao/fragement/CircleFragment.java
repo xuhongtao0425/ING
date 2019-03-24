@@ -3,7 +3,7 @@ package com.bw.xuhongtao.fragement;
 import android.view.View;
 
 import com.bw.xuhongtao.R;
-import com.bw.xuhongtao.base.FragementBase;
+import com.bw.xuhongtao.base.BaseFragement;
 
 /**
  * @author xuhongtao
@@ -11,7 +11,7 @@ import com.bw.xuhongtao.base.FragementBase;
  * @package com.bw.xuhongtao.fragement
  * @date 2019/3/17/017 10:35
  */
-public class CircleFragment extends FragementBase {
+public class CircleFragment extends BaseFragement {
     @Override
     protected int layoutResID() {
         return R.layout.layout_circle;

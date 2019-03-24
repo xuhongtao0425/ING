@@ -1,16 +1,25 @@
 package com.bw.xuhongtao.fragement;
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.xuhongtao.R;
 import com.bw.xuhongtao.activity.LoginActivity;
-import com.bw.xuhongtao.base.FragementBase;
+import com.bw.xuhongtao.base.BaseFragement;
+import com.bw.xuhongtao.bean.loginbean.LoginBean;
+import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,9 +32,9 @@ import butterknife.Unbinder;
  * @package com.bw.xuhongtao.fragement
  * @date 2019/3/17/017 10:42
  */
-public class MyFragement extends FragementBase {
+public class MyFragement extends BaseFragement {
     @BindView(R.id.head_my)
-    ImageView headMy;//头像
+    SimpleDraweeView headMy;//头像
     @BindView(R.id.username_my)
     TextView usernameMy;//用户名
     @BindView(R.id.information)
@@ -39,10 +48,13 @@ public class MyFragement extends FragementBase {
     @BindView(R.id.shippingaddress)
     TextView shippingaddress;//收货地址
     Unbinder unbinder;//绑定
+    private String nickName="登录/注册";
+    private String headPic;
 
 
     @Override
     protected int layoutResID() {
+        EventBus.getDefault().register(this);
         return R.layout.layout_my;
     }
 
@@ -53,18 +65,18 @@ public class MyFragement extends FragementBase {
 
     @Override
     protected void initData() {
-
-
+        usernameMy.setText(nickName);
+        headMy.setImageURI(headPic);
     }
+
     //点击事件
     @OnClick({R.id.head_my, R.id.username_my, R.id.information, R.id.circle, R.id.foot, R.id.wallet, R.id.shippingaddress})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.head_my:
-
                 break;
             case R.id.username_my:
-                startActivity(new Intent(getActivity(),LoginActivity.class));
+                startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
             case R.id.information:
                 break;
@@ -79,9 +91,28 @@ public class MyFragement extends FragementBase {
         }
     }
 
+
+
+    //接收登录页面传来的值
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getLogin(LoginBean loginBean) {
+//        Log.i("xxxxs", loginBean.toString());
+        LoginBean.ResultEntity result = loginBean.getResult();
+        nickName = result.getNickName();
+        headPic = result.getHeadPic();
+//        SharedPreferences login = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
+//        String nickName = login.getString("nickName", "登录/注册");
+//        String headPic = login.getString("headPic", "");
+        usernameMy.setText(nickName);
+        headMy.setImageURI(headPic);
+
+
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();//解绑
+        EventBus.getDefault().unregister(this);
     }
 }

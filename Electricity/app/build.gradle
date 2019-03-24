@@ -31,10 +31,12 @@ dependencies {
     //Retrofit的依赖
     implementation 'com.squareup.retrofit2:retrofit:2.0.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
-//    RxJAVA 的依赖
+    //    RxJAVA 的依赖
     implementation 'io.reactivex.rxjava2:rxjava:2.1.3'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //    EventBus的依赖
+    implementation 'org.greenrobot:eventbus:3.1.1'
     //design依赖
     implementation 'com.android.support:design:28.+'
     // khttp的依赖
@@ -46,4 +48,26 @@ dependencies {
     implementation 'com.android.support:cardview-v7:28.+'
     //fresco依赖
     implementation 'com.facebook.fresco:fresco:1.13.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    //    CardView卡片式
+    implementation 'com.android.support:cardview-v7:28.+'
+//    glide依赖
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+//    XRecyclerview的依赖
+    implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
+//    Xbanner依赖
+//    implementation 'com.xhb:xbanner:1.2.2'
+    implementation 'com.github.xiaohaibin:XBanner:1.6.1'
+
+}
+//XRecyclerview需要配置解决冲突
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '28.0.0'    //此处填写你项目使用的sdk版本
+            }
+        }
+    }
 }

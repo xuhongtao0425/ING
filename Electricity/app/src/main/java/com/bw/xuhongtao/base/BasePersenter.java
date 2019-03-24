@@ -10,8 +10,15 @@ import java.lang.ref.WeakReference;
  * @date 2019/3/17/017 11:03
  */
 public abstract class BasePersenter<T>{
+
     //声明
     private Reference<T> reference;
+    public T view;
+
+    //获取到对象
+    public void getView(T t){
+        this.view=t;
+    }
 
     //管理activity    通过弱引用管理
     public void attach(T t) {
@@ -24,6 +31,7 @@ public abstract class BasePersenter<T>{
             reference.clear();
             reference = null;
         }
+
     }
 
 
