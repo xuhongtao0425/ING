@@ -56,6 +56,8 @@ public class DetailsActivity extends ActivityBase<DetailsPersenter> implements D
     private int userId;
     private String sessionId;
     private String commodityId;
+    private SharedPreferences login;
+    private JSONObject jsonObject;
 
     @Override
     protected int layoutResID() {
@@ -78,7 +80,7 @@ public class DetailsActivity extends ActivityBase<DetailsPersenter> implements D
 
     @Override
     protected void initData() {
-        SharedPreferences login = getSharedPreferences("login", Context.MODE_PRIVATE);
+        login = getSharedPreferences("login", Context.MODE_PRIVATE);
         userId = login.getInt("userId", 0);
         sessionId = login.getString("sessionId", "");
         Log.i("sssssss",userId+"ssss"+sessionId);
@@ -149,7 +151,8 @@ public class DetailsActivity extends ActivityBase<DetailsPersenter> implements D
     //点击加入购物车
     @OnClick(R.id.fab_details)
     public void getFab() {
-        if (userId == 0 && sessionId.equals("")) {
+        boolean alogin = login.getBoolean("登录", false);
+        if (!alogin) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setIcon(R.mipmap.ic_launcher_round);
             builder.setTitle("提示");
@@ -164,22 +167,27 @@ public class DetailsActivity extends ActivityBase<DetailsPersenter> implements D
             builder.setNegativeButton("取消", null);
             builder.show();
             return;
+        }else{
+            int userId = login.getInt("userId", 0);
+            String sessionId = login.getString("sessionId", "");
+                    Toast.makeText(this, "加入" + userId + sessionId, Toast.LENGTH_SHORT).show();
+            //查询购物车
+            persenter.queryShoping(userId, sessionId);
+
         }
-//        Toast.makeText(this, "加入" + userId + sessionId, Toast.LENGTH_SHORT).show();
-        //查询购物车
-        persenter.queryShoping(userId, sessionId);
 
     }
     //查询购物车的数据
     @Override
     public void getData(List<QueryShopping.Result> result) {
         JSONArray jsonArray=new JSONArray();
-        JSONObject jsonObject=new JSONObject();
+
         if(result.size()!=0){
             for (int i = 0; i < result.size(); i++) {
                 int commodityId = result.get(i).getCommodityId();
                 int count = result.get(i).getCount();
                 try {
+                    jsonObject = new JSONObject();
                     jsonObject.put("commodityId",commodityId);
                     jsonObject.put("count",count);
                     jsonArray.put(jsonObject);
@@ -188,10 +196,13 @@ public class DetailsActivity extends ActivityBase<DetailsPersenter> implements D
                 }
             }
             try {
+                JSONObject jsonObject1=new JSONObject();
                 int i = Integer.parseInt(commodityId);
-                jsonObject.put("commodityId",i);
-                jsonObject.put("count",1);
-                jsonArray.put(jsonObject);
+                jsonObject1.put("commodityId",i);
+                jsonObject1.put("count",1);
+                jsonArray.put(jsonObject1);
+                int userId = login.getInt("userId", 0);
+                String sessionId = login.getString("sessionId", "");
                 persenter.addShoping(userId, sessionId, jsonArray.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -199,10 +210,13 @@ public class DetailsActivity extends ActivityBase<DetailsPersenter> implements D
 
         }else{
             try {
+                jsonObject=new JSONObject();
                 int i = Integer.parseInt(commodityId);
                 jsonObject.put("commodityId",i);
                 jsonObject.put("count",1);
                 jsonArray.put(jsonObject);
+                int userId = login.getInt("userId", 0);
+                String sessionId = login.getString("sessionId", "");
                 persenter.addShoping(userId, sessionId, jsonArray.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -213,6 +227,7 @@ public class DetailsActivity extends ActivityBase<DetailsPersenter> implements D
     //加入购物车的数据
     @Override
     public void getAddshoppingData(Addshopping addshopping) {
+//        Log.i("qqqq",addshopping.getStatus());
         if(addshopping.getStatus().equals("0000")){
             Toast.makeText(this, addshopping.getMessage(), Toast.LENGTH_SHORT).show();
         }else{

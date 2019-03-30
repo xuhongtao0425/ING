@@ -3,7 +3,7 @@ package com.bw.xuhongtao.bean.shoppingcart;
 /**
  * @author xuhongtao
  * @fileName Addshopping
- * @package com.bw.xuhongtao.bean.shoppingcart
+ * @package com.bw.xuhongtao.bean.shoppingcart    添加地址和添加购物车   设置默认收货地址    创建订单
  * @date 2019/3/23/023 15:05
  */
 public class Addshopping {

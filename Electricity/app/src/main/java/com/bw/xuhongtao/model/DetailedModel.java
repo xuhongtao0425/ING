@@ -1,6 +1,7 @@
 package com.bw.xuhongtao.model;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.bw.xuhongtao.Apk.ApkServier;
 import com.bw.xuhongtao.R;
@@ -95,18 +96,24 @@ public class DetailedModel {
     }
     //查询购物车
     public void queryShoping(int userId, String sessionId) {
-        ApkServier apiServer = RetrofitUtil.getRetrofitUtil().getApiServer(AipUrl.Url, userId + "", sessionId, ApkServier.class);
-        Flowable<QueryShopping> queryShopping = apiServer.getQueryShopping();
+        ApkServier apiServer = RetrofitUtil.getRetrofitUtil().getApiServer(AipUrl.Url,  ApkServier.class);
+        Flowable<QueryShopping> queryShopping = apiServer.getQueryShopping(userId,sessionId);
         DisposableSubscriber<QueryShopping> disposableSubscriber = queryShopping.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<QueryShopping>() {
                     @Override
                     public void onNext(QueryShopping queryShopping) {
 //                        Log.i("queryShopping", queryShopping.toString());
-                        List<QueryShopping.Result> result = queryShopping.getResult();
-                        if(onQueryShopping!=null){
-                        onQueryShopping.getData(result);
+                        String status = queryShopping.getStatus();
+                        if(status.equals("0000")){
+                            List<QueryShopping.Result> result = queryShopping.getResult();
+                            if(onQueryShopping!=null){
+                                onQueryShopping.getData(result);
+                            }
+                        }else{
+                            Log.i("queryShopping",queryShopping.getMessage());
                         }
+
 
                     }
 

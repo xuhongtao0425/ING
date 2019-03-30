@@ -1,12 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_centerInParent="true"
-        android:textSize="50dp"
-        android:layout_width="wrap_content"
+
+    <RadioGroup
+        android:id="@+id/rgMain"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="订单"
-        />
-</RelativeLayout>
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/allorder"
+            android:gravity="center"
+            android:text="全部订单" />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/obligation"
+            android:gravity="center"
+            android:text="待付款" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/receiving"
+            android:gravity="center"
+            android:text="待收货" />
+
+        <RadioButton
+            android:id="@+id/radio3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/remain"
+            android:gravity="center"
+            android:text="待评价" />
+
+        <RadioButton
+            android:id="@+id/radio4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/off"
+            android:gravity="center"
+            android:text="已完成" />
+    </RadioGroup>
+    <android.support.v4.view.ViewPager
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/vp"
+        ></android.support.v4.view.ViewPager>
+</LinearLayout>

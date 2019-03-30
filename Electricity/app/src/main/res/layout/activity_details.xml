@@ -52,11 +52,25 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="200dp"
+        android:backgroundTint="@color/Mybackground"
+        android:clickable="true"
+        android:src="@drawable/add"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/shipp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/buy_details"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="100dp"
         android:backgroundTint="@color/Mybackground"
         android:clickable="true"
-        app:rippleColor="@color/shipp"
-        android:src="@drawable/add"
-        app:borderWidth="0dp" />
+        android:src="@mipmap/buy"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/shipp" />
 
 </RelativeLayout>

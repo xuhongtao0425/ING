@@ -70,8 +70,8 @@ public class RetrofitUtil {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl(url)
                 .client(getokHttp(userId, sessionId))
+                .baseUrl(url)
                 .build();
         return retrofit;
     }
@@ -79,9 +79,9 @@ public class RetrofitUtil {
     //Retrofit封装不带拦截器
     public static Retrofit getRetrofit(String url) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl(url)
                 .build();
         return retrofit;
     }

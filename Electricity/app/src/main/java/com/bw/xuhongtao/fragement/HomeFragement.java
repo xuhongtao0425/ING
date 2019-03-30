@@ -258,10 +258,11 @@ public class HomeFragement extends FragementBase<HomePersenter> implements DataV
         rlv_poptwo = view.findViewById(R.id.rlv_poptwo);
         //布局管理器
         rlv_pop.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        rlv_pop.setBackgroundColor(Color.YELLOW);
+        rlv_pop.setBackgroundColor(Color.GRAY);
         //设置适配器
         FirstAdapter adapter = new FirstAdapter(getActivity(), result);
         rlv_pop.setAdapter(adapter);
+
         PopupWindow popupWindow = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         //这是背景色
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -288,7 +289,7 @@ public class HomeFragement extends FragementBase<HomePersenter> implements DataV
     public void userWalletData(List<UserWallet.ResultEntity> result) {
         //布局管理器
         rlv_poptwo.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        rlv_poptwo.setBackgroundColor(Color.YELLOW);
+        rlv_poptwo.setBackgroundColor(Color.GRAY);
         //设置适配器
         UserWalletAdapter adapter = new UserWalletAdapter(getActivity(), result);
         rlv_poptwo.setAdapter(adapter);

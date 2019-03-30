@@ -1,5 +1,6 @@
 package com.bw.xuhongtao.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -109,6 +110,17 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //获取intent
+        Intent intent = getIntent();
+        //获取存的值
+        int id = intent.getIntExtra("id", 0);
+        //判断
+        if(id==3){
+            getSupportFragmentManager().beginTransaction().show(orderFragement).hide(homeFragement).hide(circleFragment)
+                    .hide(shoppingFragment).hide(myFragement).commit();
+        }
+    }
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bw.xuhongtao.R;
 import com.bw.xuhongtao.activity.LoginActivity;
+import com.bw.xuhongtao.activity.ShippingAddressActivity;
 import com.bw.xuhongtao.base.BaseFragement;
 import com.bw.xuhongtao.bean.loginbean.LoginBean;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -48,7 +49,7 @@ public class MyFragement extends BaseFragement {
     @BindView(R.id.shippingaddress)
     TextView shippingaddress;//收货地址
     Unbinder unbinder;//绑定
-    private String nickName="登录/注册";
+    private String nickName = "登录/注册";
     private String headPic;
 
 
@@ -65,8 +66,7 @@ public class MyFragement extends BaseFragement {
 
     @Override
     protected void initData() {
-        usernameMy.setText(nickName);
-        headMy.setImageURI(headPic);
+
     }
 
     //点击事件
@@ -87,26 +87,36 @@ public class MyFragement extends BaseFragement {
             case R.id.wallet:
                 break;
             case R.id.shippingaddress:
+                startActivity(new Intent(getActivity(), ShippingAddressActivity.class));
                 break;
         }
     }
-
 
 
     //接收登录页面传来的值
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getLogin(LoginBean loginBean) {
 //        Log.i("xxxxs", loginBean.toString());
-        LoginBean.ResultEntity result = loginBean.getResult();
-        nickName = result.getNickName();
-        headPic = result.getHeadPic();
+//        LoginBean.ResultEntity result = loginBean.getResult();
+//        nickName = result.getNickName();
+//        headPic = result.getHeadPic();
 //        SharedPreferences login = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
 //        String nickName = login.getString("nickName", "登录/注册");
 //        String headPic = login.getString("headPic", "");
+//        usernameMy.setText(nickName);
+//        headMy.setImageURI(headPic);
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences login = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
+        String nickName = login.getString("nickName", "登录/注册");
+        String headPic = login.getString("headPic", "");
         usernameMy.setText(nickName);
         headMy.setImageURI(headPic);
-
-
     }
 
     @Override

@@ -4,6 +4,8 @@ import android.view.View;
 
 import com.bw.xuhongtao.R;
 import com.bw.xuhongtao.base.BaseFragement;
+import com.bw.xuhongtao.base.BasePersenter;
+import com.bw.xuhongtao.base.FragementBase;
 
 /**
  * @author xuhongtao
@@ -12,11 +14,11 @@ import com.bw.xuhongtao.base.BaseFragement;
  * @date 2019/3/17/017 10:41
  */
 public class OrderFragement extends BaseFragement {
+
     @Override
     protected int layoutResID() {
         return R.layout.layout_order;
     }
-
     @Override
     protected void initView(View view) {
 

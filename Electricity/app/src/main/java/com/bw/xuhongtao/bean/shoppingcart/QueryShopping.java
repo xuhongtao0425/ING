@@ -1,5 +1,8 @@
 package com.bw.xuhongtao.bean.shoppingcart;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +11,7 @@ import java.util.List;
  * @package com.bw.xuhongtao.bean.shoppingcart
  * @date 2019/3/23/023 16:13
  */
-public class QueryShopping {
+public class QueryShopping implements Serializable{
     String status;
     String message;
     List<Result> result;
@@ -46,12 +49,13 @@ public class QueryShopping {
         this.result = result;
     }
 
-    public class Result {
+    public class Result implements Serializable {
         int commodityId;
         String commodityName;
         String pic;
         double price;
         int count;
+        boolean checked;
 
         @Override
         public String toString() {
@@ -61,6 +65,7 @@ public class QueryShopping {
                     ", pic='" + pic + '\'' +
                     ", price=" + price +
                     ", count=" + count +
+                    ", checked=" + checked +
                     '}';
         }
 
@@ -102,6 +107,14 @@ public class QueryShopping {
 
         public void setCount(int count) {
             this.count = count;
+        }
+
+        public boolean isChecked() {
+            return checked;
+        }
+
+        public void setChecked(boolean checked) {
+            this.checked = checked;
         }
     }
 }

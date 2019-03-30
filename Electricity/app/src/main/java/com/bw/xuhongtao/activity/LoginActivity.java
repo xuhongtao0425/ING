@@ -133,6 +133,7 @@ public class LoginActivity extends ActivityBase<LoginPersenter> implements Login
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             edit.putInt("userId",result.getUserId());
             edit.putString("sessionId",result.getSessionId());
+            edit.putBoolean("登录",true);
             String nickName = result.getNickName();
             edit.putString("nickName", nickName);
             String headPic = result.getHeadPic();

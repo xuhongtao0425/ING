@@ -58,6 +58,8 @@ dependencies {
 //    Xbanner依赖
 //    implementation 'com.xhb:xbanner:1.2.2'
     implementation 'com.github.xiaohaibin:XBanner:1.6.1'
+    //三级联动
+    implementation 'com.github.open-android:CityPickerWebView:0.1.0'
 
 }
 //XRecyclerview需要配置解决冲突
